@@ -137,6 +137,7 @@ class CropState extends State<Crop> with TickerProviderStateMixin, Drag {
   void didUpdateWidget(Crop oldWidget) {
     super.didUpdateWidget(oldWidget);
     oldWidget.image.evict();
+    print("did update evict");
     if (widget.image != oldWidget.image) {
       _getImage();
     } else if (widget.aspectRatio != oldWidget.aspectRatio) {
@@ -159,7 +160,7 @@ class CropState extends State<Crop> with TickerProviderStateMixin, Drag {
   void _getImage({bool force = false}) {
     final oldImageStream = _imageStream;
     widget.image.evict();
-
+    print("getImage evict");
     final newImageStream =
         widget.image.resolve(createLocalImageConfiguration(context));
     _imageStream = newImageStream;
